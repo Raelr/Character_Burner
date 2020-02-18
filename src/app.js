@@ -1,18 +1,19 @@
-const fs = require('fs')
-const cmd = require('./util/consoleCmds')
+const yargs = require('yargs')
+const char = require('./util/char')
 
-const init = () => {
-    
-    var result = cmd.intro()
+yargs.command({
+  command: 'new_char',
+  describe: 'Creates a new character',
+  builder: {
+    name: {
+      describe: 'Character Name',
+      demandOption: true,
+      type: 'string'
+    }
+  },
+  handler(argv) {
+    char.addChar(argv.name)
+  }
+})
 
-    var json_char = JSON.stringify({name: result.name, concept: result.concept, stock: result.stock}, null, 2)
-
-    fs.writeFileSync('./characters/' + result.name + '.json', json_char, (err) => {
-        if (err) {
-            return console.log('An error has occurred parsing to json!')
-        } 
-        console.log('Data saved to file.')
-    })
-}
-
-init()
+yargs.parse();
