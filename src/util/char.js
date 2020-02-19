@@ -3,7 +3,7 @@ const fs = require('fs')
 const addChar = (name, concept, stock, override) => {
 
     if (override || !loadChar(name)) {
-        const data = JSON.stringify({ 
+        const char = { 
             name: name, 
             concept: concept, 
             stock: stock, 
@@ -35,9 +35,13 @@ const addChar = (name, concept, stock, override) => {
                     value: 0, 
                     shade: 0 
                 },
-            } }, null, 2)
-        fs.writeFileSync('./characters/' + name + '.json', data)
-        console.log(name + ' added!')
+            },
+            lifePaths: [],
+            general: 0,
+            specialised: 0,
+            res: 0
+        }
+        saveChar(char)
     } else {
         console.log('Character already exists!')
     }
@@ -54,9 +58,14 @@ const loadChar = (charName) => {
     }
 }
 
+const saveChar = (char) => {
+    var data = JSON.stringify(char, null, 2)
+    fs.writeFileSync('./characters/' + char.name + '.json', data)
+    console.log(char.name + ' saved!')
+}
+
 module.exports = {
     addChar: addChar,
-    loadChar: loadChar
 };
 
 // TODO: CREATE METHOD FOR CHARACTER STATS

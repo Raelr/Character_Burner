@@ -1,5 +1,6 @@
 const yargs = require('yargs')
 const char = require('./util/char')
+const lp = require('./util/lifepath.js')
 
 yargs.command({
     command: 'new_char',

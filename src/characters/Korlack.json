@@ -30,5 +30,9 @@
       "value": 0,
       "shade": 0
     }
-  }
+  },
+  "lifePaths": [],
+  "general": 0,
+  "specialised": 0,
+  "res": 0
 }
