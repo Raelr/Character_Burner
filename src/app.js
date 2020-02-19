@@ -21,12 +21,17 @@ yargs.command({
         demandOption: true,
         type: 'string'
     },
+    override: {
+        describe: 'Override saved character',
+        demandOption: false,
+        type: 'bool'
+    },
     handler(argv) {
 
         if (argv.stock.toLowerCase() === 'dwarf' || argv.stock.toLowerCase() === 'human'
         || argv.stock.toLowerCase() === 'orc' || argv.stock.toLowerCase() === 'elf') {
 
-            char.addChar(argv.name, argv.concept, argv.stock)
+            char.addChar(argv.name, argv.concept, argv.stock, argv.override)
         } else {
 
             console.log("Please select a valid Stock [Human/Dwarf/Elf/Orc]");
