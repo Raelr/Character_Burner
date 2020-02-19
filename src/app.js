@@ -20,9 +20,17 @@ yargs.command({
         describe: 'What stock do you belong to? [Human/Dwarf/Elf/Orc]',
         demandOption: true,
         type: 'string'
-    }, 
+    },
     handler(argv) {
-    char.addChar(argv.name, argv.concept, argv.stock)
+
+        if (argv.stock.toLowerCase() === 'dwarf' || argv.stock.toLowerCase() === 'human'
+        || argv.stock.toLowerCase() === 'orc' || argv.stock.toLowerCase() === 'elf') {
+
+            char.addChar(argv.name, argv.concept, argv.stock)
+        } else {
+
+            console.log("Please select a valid Stock [Human/Dwarf/Elf/Orc]");
+        }
     }
 })
 
