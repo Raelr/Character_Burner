@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Born Peasant",
+    "setting": "Peasant",
+    "stock": "Human",
+    "time": 8,
+    "leads": [
+      "Servitude",
+      "Soldier",
+      "Seafaring",
+      "Religious"
+    ],
+    "skills": 3,
+    "traits": 2
+  }
+]

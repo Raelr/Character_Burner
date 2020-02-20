@@ -40,4 +40,9 @@ yargs.command({
     }
 })
 
+yargs.command({
+    command: 'add_lp',
+    describe: 'Allows new lifepaths to be added to the game.'
+})
+
 yargs.parse();
