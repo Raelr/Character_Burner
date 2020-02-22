@@ -2,7 +2,7 @@
   "name": "Korlack",
   "concept": "Disgraced Clansman",
   "stock": "Dwarf",
-  "age": 0,
+  "age": 8,
   "mental": 0,
   "physical": 0,
   "stats": {
@@ -31,8 +31,23 @@
       "shade": 0
     }
   },
-  "lifePaths": [],
-  "general": 0,
+  "lifePaths": [
+    {
+      "name": "Born Peasant",
+      "setting": "Peasant",
+      "stock": "Human",
+      "time": 8,
+      "leads": [
+        "Servitude",
+        "Soldier",
+        "Seafaring",
+        "Religious"
+      ],
+      "skills": 3,
+      "traits": 2
+    }
+  ],
+  "general": 3,
   "specialised": 0,
   "res": 0
 }
