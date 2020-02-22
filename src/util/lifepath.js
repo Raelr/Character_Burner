@@ -1,12 +1,11 @@
 const fs = require('fs')
 
-// TODO: Allow lifepaths to be queried and found.
 // TODO: Get skills from lifepath.
 // TODO: Remove lifepaths
 // TODO: Allow lifepaths to be overridden.
 // TODO: Integrate lifepaths with char.
-// TODO: Query specific lifepaths.
 // TODO: Create associated skills.
+// TODO: Create associated traits.
 
 const addLifePath = (name, setting, stock, time, leads, skills, traits) => {
 
