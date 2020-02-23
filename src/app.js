@@ -29,11 +29,10 @@ yargs.command({
         },
     },
     handler(argv) {
+        if (argv.s.toLowerCase() === 'dwarf' || argv.s.toLowerCase() === 'human'
+        || argv.s.toLowerCase() === 'orc' || argv.s.toLowerCase() === 'elf') {
 
-        if (argv.stock.toLowerCase() === 'dwarf' || argv.stock.toLowerCase() === 'human'
-        || argv.stock.toLowerCase() === 'orc' || argv.stock.toLowerCase() === 'elf') {
-
-            char.addChar(argv.name, argv.concept, argv.stock, argv.override)
+            char.addChar(argv.n, argv.c, argv.s, argv.o)
         } else {
             console.log("Please select a valid Stock [Human/Dwarf/Elf/Orc]");
         }
@@ -42,10 +41,44 @@ yargs.command({
 
 // Command foir adding new lifepaths
 yargs.command({
-    command: 'add_lp',
+    command: 'al',
     describe: 'Allows new lifepaths to be added to the game.',
     builder: {
-
+        n: {
+            describe: 'LifePath name.',
+            demandOption: true,
+            type: 'string'
+        },
+        se: {
+            describe: 'Setting lifepath belongs to.',
+            demandOption: true,
+            type: 'string'
+        },
+        st: {
+            describe: 'Stock lifepath belongs to.',
+            demandOption: true,
+            type: 'string'
+        },
+        ti: {
+            describe: 'Time within certain lifepath (used for age)',
+            demandOption: true,
+        },
+        l: {
+            describe: 'Other settings this lifepath leads into.',
+            demandOption: true,
+            type: 'array'
+        },
+        sp: {
+            describe: 'Number of skill points.',
+            demandOption: true,
+        },
+        tp: {
+            describe: 'Number of trait points',
+            demandOption: true,
+        }
+    },
+    handler(argv) {
+        lp.addLifePath(argv.n, argv.se, argv.st, argv.ti, argv.l, argv.sp, argv.tp)
     }
 })
 

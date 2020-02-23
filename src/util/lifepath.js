@@ -12,6 +12,12 @@ const addLifePath = (name, setting, stock, time, leads, skills, traits) => {
 
     var paths = loadLifePaths()
 
+    var hasSetting = (paths.filter((setting) => setting.name.toLowerCase() === setting.toLowerCase()).length > 0)
+
+    if (hasSetting) {
+
+    }
+
     if (!(paths.filter((lp) => lp.name === name && lp.setting === setting).find(
         (lp) => lp.name === name && lp.setting === setting))) {
 

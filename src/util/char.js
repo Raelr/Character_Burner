@@ -70,6 +70,7 @@ const saveChar = (char) => {
     console.log(char.name + ' saved!')
 }
 
+// Adds a specified lifepath to the character's list.
 const addPathToChar = (charName, lp) => {
     // Try and find our character
     var character = loadChar(charName)

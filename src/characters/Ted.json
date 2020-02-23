@@ -2,7 +2,7 @@
   "name": "Ted",
   "concept": "Simple Farmer",
   "stock": "Human",
-  "age": 16,
+  "age": 0,
   "mental": 0,
   "physical": 0,
   "stats": {
@@ -31,37 +31,9 @@
       "shade": 0
     }
   },
-  "lifePaths": [
-    {
-      "name": "Born Peasant",
-      "setting": "Peasant",
-      "stock": "Human",
-      "time": 8,
-      "leads": [
-        "Servitude",
-        "Soldier",
-        "Seafaring",
-        "Religious"
-      ],
-      "skills": 3,
-      "traits": 2
-    },
-    {
-      "name": "Farmer",
-      "setting": "Peasant",
-      "stock": "Human",
-      "time": 8,
-      "leads": [
-        "Villager",
-        "Soldier",
-        "Servitude"
-      ],
-      "skills": 8,
-      "traits": 1
-    }
-  ],
-  "traitPoints": 3,
-  "general": 3,
-  "specialised": 8,
+  "lifePaths": [],
+  "traitPoints": 0,
+  "general": 0,
+  "specialised": 0,
   "res": 0
 }
