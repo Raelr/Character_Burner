@@ -12,11 +12,15 @@ const addLifePath = (name, setting, stock, time, leads, skills, traits) => {
 
     var paths = loadLifePaths()
 
-    var hasSetting = (paths.filter((setting) => setting.name.toLowerCase() === setting.toLowerCase()).length > 0)
+    //var hasSetting = (paths.filter((setting) => setting.name.toLowerCase() === setting.toLowerCase()).length > 0)
 
-    if (hasSetting) {
+    // TODO: Check if setting actually exists.
+    // TODO: If Setting does not exist - create new setting field and insert it with the correct name.
+    // TODO: If setting does exist - simply insert new lifepath into the setting array.
+    // TODO: Reconfigure all dependecies on the new structure.
+    //if (hasSetting) {
 
-    }
+    //}
 
     if (!(paths.filter((lp) => lp.name === name && lp.setting === setting).find(
         (lp) => lp.name === name && lp.setting === setting))) {
