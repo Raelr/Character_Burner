@@ -7,22 +7,22 @@ yargs.command({
     command: 'nc',
     describe: 'Creates a new character',
     builder: {
-        name: {
+        n: {
             describe: 'Character Name',
             demandOption: true,
             type: 'string'
         },
-        concept: {
+        c: {
             describe: 'Character concept',
             demandOption: false,
             type: 'string'
         },
-        stock: {
+        s: {
             describe: 'What stock do you belong to? [Human/Dwarf/Elf/Orc]',
             demandOption: true,
             type: 'string'
         },
-        override: {
+        o: {
             describe: 'Override saved character',
             demandOption: false,
             type: 'bool'
@@ -51,7 +51,7 @@ yargs.command({
 
 // Command for adding lifepaths TO a character.
 yargs.command({
-    command: 'add_lp_to',
+    command: 'alt',
     describe: 'Adds a lifepath to a specified character.',
     builder: {
         c: {
