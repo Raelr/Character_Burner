@@ -2,6 +2,7 @@ const yargs = require('yargs')
 const char = require('./util/char')
 const lp = require('./util/lifepath.js')
 
+// Command for creating a new character.
 yargs.command({
     command: 'nc',
     describe: 'Creates a new character',
@@ -39,6 +40,7 @@ yargs.command({
     }
 })
 
+// Command foir adding new lifepaths
 yargs.command({
     command: 'add_lp',
     describe: 'Allows new lifepaths to be added to the game.',
@@ -47,6 +49,7 @@ yargs.command({
     }
 })
 
+// Command for adding lifepaths TO a character.
 yargs.command({
     command: 'add_lp_to',
     describe: 'Adds a lifepath to a specified character.',

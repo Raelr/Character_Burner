@@ -12,5 +12,18 @@
     ],
     "skills": 3,
     "traits": 2
+  },
+  {
+    "name": "Farmer",
+    "setting": "Peasant",
+    "stock": "Human",
+    "time": 8,
+    "leads": [
+      "Villager",
+      "Soldier",
+      "Servitude"
+    ],
+    "skills": 8,
+    "traits": 1
   }
 ]

@@ -6,6 +6,7 @@ const fs = require('fs')
 // TODO: Integrate lifepaths with char.
 // TODO: Create associated skills.
 // TODO: Create associated traits.
+// TODO: Sort lifepaths into Stocks and Settings
 
 const addLifePath = (name, setting, stock, time, leads, skills, traits) => {
 

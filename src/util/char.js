@@ -1,6 +1,9 @@
 const fs = require('fs')
 
 // TODO: HOOK UP TO MONGODB SO THAT YOU CAN STORE AND QUERY
+// TODO: Add traits and skills so that they can interact with lifepaths.
+// TODO: Add skills to lifepaths.
+// TODO: build command for adding new lifepaths.
 
 const addChar = (name, concept, stock, override) => {
 
@@ -90,10 +93,19 @@ const addPathToChar = (charName, lp) => {
                 return console.log("Cannot add lifepaths which aren't 'Born' as your first lifepath! (You were born at some point, weren't you?)")
             // Character has other lifepaths which need to be added.
             } else {
-                // TODO: Add ability to add other lifepaths to character.
-                // Lifepaths MUST be either part of the same setting OR be part of the character's lead.
-                // Lead lifepaths should increase age by 1 + lifepath time.
-                // Normal keep same age.
+                // TODO: Test if lifepaths from other settings work properly.
+                // Check if the lifepath chosen is a lead from the character's previous lifepath.
+                var isLead = character.lifePaths[character.lifePaths.length - 1]
+                    .leads.filter((path) => path.toLowerCase() == lp.setting.toLowerCase()).length > 0
+                // If the lifepath chosen is within the same setting OR the lifepath is a lead...
+                if ((character.lifePaths[character.lifePaths.length - 1]
+                    .setting.toLowerCase() == lp.setting.toLowerCase()) || isLead) {
+                        character.specialised += lp.skills
+                        console.log(charName + ' became a ' + lp.name + ' at age: ' + character.age)
+                        addPath(character, lp, isLead)
+                } else {
+                    return console.log('The lifepath chosen cannot be attached to this character! It either does not match their setting or is not a lead!')
+                }
             }
         } else {
             return console.log('Error - Character and lifepath stocks do not match!')
@@ -103,9 +115,9 @@ const addPathToChar = (charName, lp) => {
     }
 }
 
-const addPath = (char, lp) => {
+const addPath = (char, lp, isLead = false) => {
     char.lifePaths.push(lp)
-    char.age += lp.time
+    char.age += isLead ? (lp.time + 1) : lp.time
     char.traitPoints += lp.traits
     saveChar(char)
     console.log('Age increased by ' + lp.time + ' years.')
