@@ -1,0 +1,35 @@
+[
+  {
+    "stock": "Human",
+    "settings": [
+      {
+        "setting": "Peasant",
+        "lifePaths": [
+          {
+            "name": "Born Peasant",
+            "time": 8,
+            "leads": [
+              "Servitude",
+              "Soldier",
+              "Seafaring",
+              "Religious"
+            ],
+            "skills": 3,
+            "traits": 2
+          },
+          {
+            "name": "Farmer",
+            "time": 8,
+            "leads": [
+              "Servitude",
+              "Soldier",
+              "villager"
+            ],
+            "skills": 8,
+            "traits": 1
+          }
+        ]
+      }
+    ]
+  }
+]
