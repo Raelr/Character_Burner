@@ -3,15 +3,12 @@ const fs = require('fs')
 // TODO: Get skills from lifepath.
 // TODO: Remove lifepaths
 // TODO: Allow lifepaths to be overridden.
-// TODO: Integrate lifepaths with char.
 // TODO: Create associated skills.
 // TODO: Create associated traits.
 
 const addLifePath = (name, setting, stock, time, leads, skills, traits) => {
 
     var paths = loadLifePaths()
-
-    // TODO: Reconfigure all dependecies on the new structure.
 
     var newLifePath = {
         name: name,
@@ -104,7 +101,21 @@ const loadLifePaths = () => {
     }
 }
 
+const removeLifePath = (lpName, lpSetting, lpStock) => {
+    var paths = loadLifePaths()
+
+    var setting = getSetting(getStock(paths, lpStock), lpSetting)
+
+    if (setting) {
+        lp = setting.lifePaths.find((lp) => lp.name.toLowerCase() === lpName.toLowerCase())
+        index = setting.lifePaths.indexOf(lp)
+        setting.lifePaths.splice(index, 1)
+        saveLifePath(paths)
+    }
+}
+
 module.exports = {
     addLifePath : addLifePath,
-    getLifePath : getLifePath
+    getLifePath : getLifePath,
+    removeLifePath: removeLifePath
 }

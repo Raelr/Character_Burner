@@ -117,4 +117,6 @@ yargs.command({
     }
 })
 
+lp.removeLifePath('Test', 'Test', 'Test')
+
 yargs.parse();

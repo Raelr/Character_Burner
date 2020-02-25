@@ -117,6 +117,7 @@ const addPathToChar = (charName, lp, stock, setting) => {
     }
 }
 
+// Add the path to the character lifepaths.
 const addPath = (char, lp, setting, isLead = false) => {
     char.lifePaths.push(lp)
     char.age += isLead ? (lp.time + 1) : lp.time
@@ -127,7 +128,7 @@ const addPath = (char, lp, setting, isLead = false) => {
     && char.settings[char.settings.length - 1].toLowerCase() === setting.toLowerCase())) {
         char.settings.push(setting)
     }
-    
+
     saveChar(char)
     console.log('Age increased by ' + lp.time + ' years.')
     console.log('You now have ' + char.traitPoints + ' trait points to spend.')
