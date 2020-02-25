@@ -101,12 +101,18 @@ yargs.command({
             describe: 'Setting',
             demandOption: true,
             type: 'string'
+        },
+        st: {
+            describe: 'Character stock',
+            demandOption: true,
+            type: 'String'
         }
     },
     handler(argv) {
-        var path = lp.getLifePath(argv.lp, argv.s)
+        var path = lp.getLifePath(argv.st, argv.s, argv.lp)
+
         if (path) {
-            char.addPathToChar(argv.c, path)
+            char.addPathToChar(argv.c, path, argv.st, argv.s)
         }
     }
 })

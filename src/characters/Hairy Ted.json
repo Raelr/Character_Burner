@@ -1,0 +1,66 @@
+{
+  "name": "Hairy Ted",
+  "concept": "Hairy Bard",
+  "stock": "Human",
+  "age": 16,
+  "mental": 0,
+  "physical": 0,
+  "stats": {
+    "will": {
+      "value": 0,
+      "shade": 0
+    },
+    "perception": {
+      "value": 0,
+      "shade": 0
+    },
+    "agility": {
+      "value": 0,
+      "shade": 0
+    },
+    "speed": {
+      "value": 0,
+      "shade": 0
+    },
+    "power": {
+      "value": 0,
+      "shade": 0
+    },
+    "forte": {
+      "value": 0,
+      "shade": 0
+    }
+  },
+  "settings": [
+    "Peasant"
+  ],
+  "lifePaths": [
+    {
+      "name": "Born Peasant",
+      "time": 8,
+      "leads": [
+        "Servitude",
+        "Soldier",
+        "Seafaring",
+        "Religious"
+      ],
+      "skills": 3,
+      "traits": 2
+    },
+    {
+      "name": "Farmer",
+      "time": 8,
+      "leads": [
+        "Servitude",
+        "Soldier",
+        "villager"
+      ],
+      "skills": 8,
+      "traits": 1
+    }
+  ],
+  "traitPoints": 3,
+  "general": 3,
+  "specialised": 8,
+  "res": 0
+}

@@ -6,15 +6,11 @@ const fs = require('fs')
 // TODO: Integrate lifepaths with char.
 // TODO: Create associated skills.
 // TODO: Create associated traits.
-// TODO: Sort lifepaths into Stocks and Settings
 
 const addLifePath = (name, setting, stock, time, leads, skills, traits) => {
 
     var paths = loadLifePaths()
 
-    // TODO: Check if setting actually exists.
-    // TODO: If Setting does not exist - create new setting field and insert it with the correct name.
-    // TODO: If setting does exist - simply insert new lifepath into the setting array.
     // TODO: Reconfigure all dependecies on the new structure.
 
     var newLifePath = {
@@ -59,6 +55,25 @@ const addLifePath = (name, setting, stock, time, leads, skills, traits) => {
     saveLifePath(paths)
 }
 
+const getLifePath = (stock, setting, pathName) => {
+
+    lifePaths = loadLifePaths()
+
+    var searchedStock = getStock(lifePaths, stock)
+    if (searchedStock) {
+        var searchedSetting = getSetting(searchedStock, setting)
+        if (searchedSetting) {
+            var path = getPath(searchedSetting, pathName)
+            console.log('Found lifepath ' + path.name + '!');
+            return path
+        } else {
+            return console.log('No setting found with name: ' + searchedSetting.name)
+        }
+    } else {
+        return console.log('No stock found with name: ' + searchedStock);
+    }
+}
+
 const getPath = (setting, pathName) => {
     return setting.lifePaths.filter((lp) => lp.name.toLowerCase() === pathName.toLowerCase())
     .find((lp) => lp.name.toLowerCase() === pathName.toLowerCase())
@@ -89,23 +104,7 @@ const loadLifePaths = () => {
     }
 }
 
-const getPathsFromSetting = (setting) => {
-    const paths = loadLifePaths();
-    return paths.filter((path) => path.setting.toLowerCase() === setting.toLowerCase())
-}
-
-const getLifePath = (lifePath, setting) => {
-    var val = getPathsFromSetting(setting).filter((lp) => lp.name.toLowerCase() === lifePath.toLowerCase())
-    if (val.length > 0) {
-        return val[0]
-    } else {
-        console.log("No lifepath with name: " + lifePath + " exists!")
-        return null
-    }
-}
-
 module.exports = {
     addLifePath : addLifePath,
-    getPathsFromSetting : getPathsFromSetting,
     getLifePath : getLifePath
 }

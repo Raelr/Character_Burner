@@ -41,6 +41,7 @@ const addChar = (name, concept, stock, override) => {
                     shade: 0
                 },
             },
+            settings: [],
             lifePaths: [],
             traitPoints: 0,
             general: 0,
@@ -71,13 +72,13 @@ const saveChar = (char) => {
 }
 
 // Adds a specified lifepath to the character's list.
-const addPathToChar = (charName, lp) => {
+const addPathToChar = (charName, lp, stock, setting) => {
     // Try and find our character
     var character = loadChar(charName)
     // Make sure character actually was returned
     if (character) {
         // Make sure character and lifepath stocks match.
-        if (lp.stock.toLowerCase() === character.stock.toLowerCase()) {
+        if (stock.toLowerCase() === stock.toLowerCase()) {
             // If lifepath is a 'Born' lifepath.
             if (lp.name.toLowerCase().includes('born')) {
                 // Character already has other lifepaths (i.e: they already selected a born lifepath)
@@ -86,8 +87,8 @@ const addPathToChar = (charName, lp) => {
                 // Character has no other lifePaths
                 } else {
                     character.general = lp.skills
-                    addPath(character, lp)
-                    return console.log(charName + ' was born into the ' + lp.setting + ' setting!')
+                    addPath(character, lp, setting)
+                    return console.log(charName + ' was born into the ' + setting + ' setting!')
                 }
             // If the user tries to enter a lifepath that isn't a born lifepath as their first lifepath.
             } else if (character.lifePaths.length === 0 && !lp.name.toLowerCase().includes('born')) {
@@ -97,13 +98,13 @@ const addPathToChar = (charName, lp) => {
                 // TODO: Test if lifepaths from other settings work properly.
                 // Check if the lifepath chosen is a lead from the character's previous lifepath.
                 var isLead = character.lifePaths[character.lifePaths.length - 1]
-                    .leads.filter((path) => path.toLowerCase() == lp.setting.toLowerCase()).length > 0
+                    .leads.filter((path) => path.toLowerCase() === setting.toLowerCase()).length > 0
                 // If the lifepath chosen is within the same setting OR the lifepath is a lead...
-                if ((character.lifePaths[character.lifePaths.length - 1]
-                    .setting.toLowerCase() == lp.setting.toLowerCase()) || isLead) {
+                if ((character.settings[character.settings.length - 1]
+                    .toLowerCase() === setting.toLowerCase()) || isLead) {
                         character.specialised += lp.skills
                         console.log(charName + ' became a ' + lp.name + ' at age: ' + character.age)
-                        addPath(character, lp, isLead)
+                        addPath(character, lp, setting, isLead)
                 } else {
                     return console.log('The lifepath chosen cannot be attached to this character! It either does not match their setting or is not a lead!')
                 }
@@ -116,10 +117,17 @@ const addPathToChar = (charName, lp) => {
     }
 }
 
-const addPath = (char, lp, isLead = false) => {
+const addPath = (char, lp, setting, isLead = false) => {
     char.lifePaths.push(lp)
     char.age += isLead ? (lp.time + 1) : lp.time
     char.traitPoints += lp.traits
+
+    // Check if the character already has the setting logged and whether it was his latest setting.
+    if (!((char.settings.filter((currSetting) => currSetting.toLowerCase() === setting.toLowerCase()).length > 0)
+    && char.settings[char.settings.length - 1].toLowerCase() === setting.toLowerCase())) {
+        char.settings.push(setting)
+    }
+    
     saveChar(char)
     console.log('Age increased by ' + lp.time + ' years.')
     console.log('You now have ' + char.traitPoints + ' trait points to spend.')
