@@ -101,6 +101,7 @@ const loadLifePaths = () => {
     }
 }
 
+// Remove Lifepath from the Lifepath List. Does NOT remove settings or stock information.
 const removeLifePath = (lpName, lpSetting, lpStock) => {
     var paths = loadLifePaths()
 
@@ -111,7 +112,19 @@ const removeLifePath = (lpName, lpSetting, lpStock) => {
         index = setting.lifePaths.indexOf(lp)
         setting.lifePaths.splice(index, 1)
         saveLifePath(paths)
+    } else {
+        return console.log('Setting: ' + lpSetting + ' does not exist!')
     }
+}
+
+// Find the stock and remove it completely (will delete ALL lifepaths and settings in it)
+const removeStock = (stockName) => {
+
+}
+
+// Find the setting and remove it (will delete all lifepaths below it).
+const removeSetting = (stockName, settingName) => {
+
 }
 
 module.exports = {
