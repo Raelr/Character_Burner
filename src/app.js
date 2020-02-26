@@ -85,6 +85,39 @@ yargs.command({
 yargs.command({
     command: 'rl',
     describe: 'Removes a lifepath from the lifepaths file.',
+    builder: {
+        st: {
+            describe: 'What stock does the lifepath belong to?',
+            demandOption: true,
+            type: 'string'
+        },
+        se: {
+            describe: 'What setting does the lifepath belong to?',
+            type: 'string'
+        },
+        lp: {
+            describe: 'What is the lifepath\'s name?',
+            type: 'string'
+        },
+        o: {
+            describe: 'Tells program to override data stored in the lifepaths storage.',
+            type: 'bool'
+        }
+    },
+    handler(argv) {
+        if (argv.se && !argv.lp) {
+            lp.removeSetting(argv.st, argv.se)
+        } else if (argv.lp && argv.se) {
+            lp.removeLifePath(argv.lp, argv.se, argv.st)
+        } else {
+            if (argv.o) {
+                lp.removeStock(argv.st)
+            } else {
+                console.log('WARNING: attempt to delete stock ' + argv.st + ' may delete all settings below it.')
+                console.log('Override command required. Please use --o flag to force deletion.')
+            }
+        }
+    }
 })
 
 // Command for adding lifepaths TO a character.
