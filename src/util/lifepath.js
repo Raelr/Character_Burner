@@ -113,6 +113,7 @@ const removeLifePath = (lpName, lpSetting, lpStock) => {
             index = setting.lifePaths.indexOf(lp)
             setting.lifePaths.splice(index, 1)
             saveLifePath(paths)
+            console.log('Removed lifepath: ' + lpName + ' from setting: ' + lpSetting + ' from stock: ' + lpStock)
         } else {
             return console.log('Lifepath: ' + lp.name + ' does not exist!')
         }
@@ -129,6 +130,7 @@ const removeStock = (stockName) => {
         index = paths.indexOf(stock)
         paths.splice(index, 1)
         saveLifePath(paths)
+        console.log('Removed stock: ' + stockName)
     } else {
         return console.log('Stock: ' + stockName + ' does not exist!')
     }
@@ -145,6 +147,7 @@ const removeSetting = (stockName, settingName) => {
             var index = stock.settings.indexOf(setting)
             stock.settings.splice(index, 1)
             saveLifePath(paths)
+            console.log('Removed setting: ' + settingName + ' from stock: ' + stockName + '.')
         } else {
             return console.log('Setting: ' + settingName + ' does not exist!')
         }
