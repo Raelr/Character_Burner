@@ -31,14 +31,5 @@
         ]
       }
     ]
-  },
-  {
-    "stock": "Test",
-    "settings": [
-      {
-        "setting": "Test",
-        "lifePaths": []
-      }
-    ]
   }
 ]

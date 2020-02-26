@@ -82,6 +82,11 @@ yargs.command({
     }
 })
 
+yargs.command({
+    command: 'rl',
+    describe: 'Removes a lifepath from the lifepaths file.',
+})
+
 // Command for adding lifepaths TO a character.
 yargs.command({
     command: 'alt',
@@ -116,7 +121,5 @@ yargs.command({
         }
     }
 })
-
-lp.removeLifePath('Test', 'Test', 'Test')
 
 yargs.parse();

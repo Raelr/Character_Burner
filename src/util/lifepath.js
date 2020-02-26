@@ -1,15 +1,16 @@
 const fs = require('fs')
 
 // TODO: Get skills from lifepath.
-// TODO: Remove lifepaths
 // TODO: Allow lifepaths to be overridden.
 // TODO: Create associated skills.
 // TODO: Create associated traits.
 
+// Adds a new lifepath to the paths file
 const addLifePath = (name, setting, stock, time, leads, skills, traits) => {
 
     var paths = loadLifePaths()
 
+    // create the lifePath object
     var newLifePath = {
         name: name,
         time: time,
@@ -104,14 +105,17 @@ const loadLifePaths = () => {
 // Remove Lifepath from the Lifepath List. Does NOT remove settings or stock information.
 const removeLifePath = (lpName, lpSetting, lpStock) => {
     var paths = loadLifePaths()
-
     var setting = getSetting(getStock(paths, lpStock), lpSetting)
 
     if (setting) {
-        lp = setting.lifePaths.find((lp) => lp.name.toLowerCase() === lpName.toLowerCase())
-        index = setting.lifePaths.indexOf(lp)
-        setting.lifePaths.splice(index, 1)
-        saveLifePath(paths)
+        lp = getPath(setting, lpName)
+        if (lp) {
+            index = setting.lifePaths.indexOf(lp)
+            setting.lifePaths.splice(index, 1)
+            saveLifePath(paths)
+        } else {
+            return console.log('Lifepath: ' + lp.name + ' does not exist!')
+        }
     } else {
         return console.log('Setting: ' + lpSetting + ' does not exist!')
     }
@@ -119,16 +123,40 @@ const removeLifePath = (lpName, lpSetting, lpStock) => {
 
 // Find the stock and remove it completely (will delete ALL lifepaths and settings in it)
 const removeStock = (stockName) => {
-
+    var paths = loadLifePaths()
+    var stock = getStock(paths, stockName)
+    if (stock) {
+        index = paths.indexOf(stock)
+        paths.splice(index, 1)
+        saveLifePath(paths)
+    } else {
+        return console.log('Stock: ' + stockName + ' does not exist!')
+    }
 }
 
 // Find the setting and remove it (will delete all lifepaths below it).
 const removeSetting = (stockName, settingName) => {
+    var paths = loadLifePaths()
+    var stock = getStock(paths, stockName)
 
+    if (stock) {
+        setting = getSetting(stock, settingName)
+        if (setting) {
+            var index = stock.settings.indexOf(setting)
+            stock.settings.splice(index, 1)
+            saveLifePath(paths)
+        } else {
+            return console.log('Setting: ' + settingName + ' does not exist!')
+        }
+    } else {
+        return console.log('Stock: ' + stockName + ' does not exist!')
+    }
 }
 
 module.exports = {
     addLifePath : addLifePath,
     getLifePath : getLifePath,
-    removeLifePath: removeLifePath
+    removeLifePath : removeLifePath,
+    removeSetting : removeSetting,
+    removeStock : removeStock
 }
