@@ -173,7 +173,13 @@ yargs.command({
         }
     },
     handler(argv) {
+        if (argv.st && argv.se) {
 
+        } else if (argv.st) {
+            lp.ListSettingsForStock(argv.st)
+        } else {
+            lp.listAllPaths()
+        }
     }
 })
 
