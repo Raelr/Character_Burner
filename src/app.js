@@ -159,6 +159,13 @@ yargs.command({
     }
 })
 
+// Command lists differnet things based on the input
+// Option 1: Stock is provided but no setting is specified.
+// Result: A list of all settings under the specified stock are listed
+// Option 2: A stock and setting are listed.
+// Result: All lifepaths under the setting are listed.
+// Option 3: No options are given.
+// Result: All stocks, settings, and lifepaths are listed.
 yargs.command({
     command: 'ls',
     describe: 'Lists lifepaths. Can use stock and setting as filters.',
@@ -170,13 +177,27 @@ yargs.command({
         se: {
             describe: 'The setting the lifepath resides in',
             type: 'string'
+        },
+        c: {
+            describe: 'The character\'s name you want to find',
+            type: 'string'
         }
     },
     handler(argv) {
-        if (argv.st && argv.se) {
+        // Lists ALL available lifepaths based on the character's latest path.
+        if (argv.c) {
+            var leads = char.getLeadList(argv.c)
+            console.log('Available Lifepaths for character: ' + argv.c)
+            leads.forEach(setting => {
+                lp.listPathsForSetting(char.getCharStock(argv.c), setting)
+            })
+        // List all lifepaths in a specified setting
+        } else if (argv.st && argv.se) {
             lp.listPathsForSetting(argv.st, argv.se)
+        // Lists all settings available in a stock
         } else if (argv.st) {
             lp.listSettingsForStock(argv.st)
+        // Lists ALL paths available in general.
         } else {
             lp.listAllPaths()
         }

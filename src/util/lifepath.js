@@ -54,7 +54,7 @@ const addLifePath = (name, setting, stock, time, leads, skills, traits) => {
     saveLifePath(paths)
 }
 
-// 
+//
 const getLifePath = (stock, setting, pathName) => {
 
     lifePaths = loadLifePaths()
@@ -160,7 +160,7 @@ const removeSetting = (stockName, settingName) => {
 
 // Lists every single lifepath in the game. Probably not fully recommended to use.
 const listAllPaths = () => {
-    
+
     var paths = loadLifePaths()
 
     paths.forEach(element => {
@@ -175,11 +175,11 @@ const listAllPaths = () => {
     console.log('\n')
 }
 
-// Lists all the settings registered under and stock. 
+// Lists all the settings registered under and stock.
 const listSettingsForStock = (stockName) => {
-    
+
     var paths = loadLifePaths()
-    
+
     var stock = getStock(paths, stockName)
 
     // Check if stock exists.

@@ -134,7 +134,28 @@ const addPath = (char, lp, setting, isLead = false) => {
     console.log('You now have ' + char.traitPoints + ' trait points to spend.')
 }
 
+// Returns the list of lifepaths that the character can lead into (based on their most recent lifepath)
+var getLeadList = (charName) => {
+
+    var character = loadChar(charName)
+
+    if (character.lifePaths.length > 0) {
+        var settings = character.lifePaths[character.lifePaths.length - 1].leads
+        settings.push(character.settings[character.settings.length - 1])
+        return settings
+    } else {
+        console.log(charName + ' has no lifepaths set!')
+    }
+}
+
+// Returns the character's stock.
+var getCharStock = (charName) => {
+    return loadChar(charName).stock
+}
+
 module.exports = {
     addChar: addChar,
-    addPathToChar: addPathToChar
+    addPathToChar: addPathToChar,
+    getLeadList: getLeadList,
+    getCharStock: getCharStock
 };
