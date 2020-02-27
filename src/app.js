@@ -105,11 +105,15 @@ yargs.command({
         }
     },
     handler(argv) {
-        if (argv.se && !argv.lp) {
-            lp.removeSetting(argv.st, argv.se)
-        } else if (argv.lp && argv.se) {
+        // Based on the number of arguments given, a different command will execute.
+        // Option 1: All three options are given -> Delete a lifepath
+        if (argv.lp && argv.se) {
             lp.removeLifePath(argv.lp, argv.se, argv.st)
+        // Option 2: a setting is given by no lifepath is -> Delete Setting
+        } else if (argv.se && !argv.lp) {
+            lp.removeSetting(argv.st, argv.se)
         } else {
+            // Option 3: Only a stock is given -> Will only delete the stock IF an override command is given.
             if (argv.o) {
                 lp.removeStock(argv.st)
             } else {
@@ -152,6 +156,24 @@ yargs.command({
         if (path) {
             char.addPathToChar(argv.c, path, argv.st, argv.s)
         }
+    }
+})
+
+yargs.command({
+    command: 'ls',
+    describe: 'Lists lifepaths. Can use stock and setting as filters.',
+    builder: {
+        st: {
+            describe: 'The stock the lifepath is part of.',
+            type: 'string'
+        },
+        se: {
+            describe: 'The setting the lifepath resides in',
+            type: 'string'
+        }
+    },
+    handler(argv) {
+
     }
 })
 

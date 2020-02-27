@@ -4,6 +4,8 @@ const fs = require('fs')
 // TODO: Allow lifepaths to be overridden.
 // TODO: Create associated skills.
 // TODO: Create associated traits.
+// TODO: Create filter for lifepaths. 
+// TODO: Allow available lifepaths for a character to be listed.
 
 // Adds a new lifepath to the paths file
 const addLifePath = (name, setting, stock, time, leads, skills, traits) => {
@@ -53,6 +55,7 @@ const addLifePath = (name, setting, stock, time, leads, skills, traits) => {
     saveLifePath(paths)
 }
 
+// 
 const getLifePath = (stock, setting, pathName) => {
 
     lifePaths = loadLifePaths()
@@ -156,10 +159,27 @@ const removeSetting = (stockName, settingName) => {
     }
 }
 
+// Lists every single lifepath in the game. Probably not fully recommended to use.
+const listAllPaths = () => {
+    
+    var paths = loadLifePaths()
+
+    paths.forEach(element => {
+        console.log('Stock: ' + element.stock);
+        element.settings.forEach(setting => {
+            console.log('-  Setting: ' + setting.setting);
+            setting.lifePaths.forEach(path => {
+                console.log('   *   ' + path.name)
+            });
+        });
+    });
+}
+
 module.exports = {
     addLifePath : addLifePath,
     getLifePath : getLifePath,
     removeLifePath : removeLifePath,
     removeSetting : removeSetting,
-    removeStock : removeStock
+    removeStock : removeStock,
+    listAllPaths : listAllPaths
 }
