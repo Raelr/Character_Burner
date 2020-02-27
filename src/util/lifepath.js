@@ -4,7 +4,6 @@ const fs = require('fs')
 // TODO: Allow lifepaths to be overridden.
 // TODO: Create associated skills.
 // TODO: Create associated traits.
-// TODO: Create filter for lifepaths. 
 // TODO: Allow available lifepaths for a character to be listed.
 
 // Adds a new lifepath to the paths file
@@ -177,7 +176,7 @@ const listAllPaths = () => {
 }
 
 // Lists all the settings registered under and stock. 
-const ListSettingsForStock = (stockName) => {
+const listSettingsForStock = (stockName) => {
     
     var paths = loadLifePaths()
     
@@ -195,6 +194,22 @@ const ListSettingsForStock = (stockName) => {
     }
 }
 
+// Lists all lifepaths within a specified setting.
+const listPathsForSetting = (stockName, settingName) => {
+    var paths = loadLifePaths()
+    var setting = getSetting(getStock(paths, stockName), settingName)
+
+    console.log('\nRetreiving Lifepaths from setting: ' + settingName + '...')
+
+    if (setting) {
+        setting.lifePaths.forEach(path => {
+            console.log('   -   ' + path.name)
+        })
+    } else {
+        console.log('No setting with name: ' + settingName + ' exists!')
+    }
+}
+
 module.exports = {
     addLifePath : addLifePath,
     getLifePath : getLifePath,
@@ -202,5 +217,6 @@ module.exports = {
     removeSetting : removeSetting,
     removeStock : removeStock,
     listAllPaths : listAllPaths,
-    ListSettingsForStock : ListSettingsForStock
+    listSettingsForStock : listSettingsForStock,
+    listPathsForSetting : listPathsForSetting
 }

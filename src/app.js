@@ -174,9 +174,9 @@ yargs.command({
     },
     handler(argv) {
         if (argv.st && argv.se) {
-
+            lp.listPathsForSetting(argv.st, argv.se)
         } else if (argv.st) {
-            lp.ListSettingsForStock(argv.st)
+            lp.listSettingsForStock(argv.st)
         } else {
             lp.listAllPaths()
         }
