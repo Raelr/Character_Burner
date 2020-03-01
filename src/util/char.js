@@ -96,7 +96,6 @@ const addPathToChar = (charName, lp, stock, setting) => {
                 return console.log("Cannot add lifepaths which aren't 'Born' as your first lifepath! (You were born at some point, weren't you?)")
             // Character has other lifepaths which need to be added.
             } else {
-                // TODO: Test if lifepaths from other settings work properly.
                 // Check if the lifepath chosen is a lead from the character's previous lifepath.
                 var isLead = character.lifePaths[character.lifePaths.length - 1]
                     .leads.filter((path) => path.toLowerCase() === setting.toLowerCase()).length > 0

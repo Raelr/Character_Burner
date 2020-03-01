@@ -8,7 +8,7 @@ const fs = require('fs')
 // TODO: Add more lifePaths.
 
 // Adds a new lifepath to the paths file
-const addLifePath = (name, setting, stock, time, leads, skills, traits) => {
+const addLifePath = (name, setting, stock, time, leads, skills, skillP, traitP) => {
 
     var paths = loadLifePaths()
 
@@ -18,7 +18,8 @@ const addLifePath = (name, setting, stock, time, leads, skills, traits) => {
         time: time,
         leads: leads,
         skills: skills,
-        traits: traits,
+        skillP: skillP,
+        traitP: traitP
     }
 
     var pathStock = getStock(paths, stock)

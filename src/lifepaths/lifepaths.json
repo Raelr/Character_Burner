@@ -9,24 +9,37 @@
             "name": "Born Peasant",
             "time": 8,
             "leads": [
-              "Servitude",
+              "Servitute",
               "Soldier",
               "Seafaring",
               "Religious"
             ],
-            "skills": 3,
-            "traits": 2
+            "skills": [],
+            "skillP": 3,
+            "traitP": 2
           },
           {
             "name": "Farmer",
             "time": 8,
             "leads": [
-              "Servitude",
+              "Servitute",
               "Soldier",
-              "villager"
+              "Villager"
             ],
-            "skills": 8,
-            "traits": 1
+            "skills": [
+              {
+                "name": "Animal Husbandry",
+                "stat": "Will",
+                "stock": ""
+              },
+              {
+                "name": "Cooking",
+                "stat": "perception",
+                "stock": ""
+              }
+            ],
+            "skillP": 8,
+            "traitP": 1
           }
         ]
       }

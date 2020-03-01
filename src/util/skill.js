@@ -1,11 +1,12 @@
 const fs = require('fs')
 
 // TODO:
-// 4. Create command for listing skills.
-// 5. Create command for returning skills.
-// 6. Integrate skills with lifepaths.
-// 7. Integrate skills with characters.
-// 8. Allow characters to allocate points to skills.
+
+// 1. Add ability to remove skill
+// 2. Add requirements and filters for returning relevant skills.
+// 3. Integrate skills with lifepaths.
+// 4. Integrate skills with characters.
+// 5. Allow characters to allocate points to skills.
 
 const addSkill = (name, stat, stock) => {
 
@@ -71,6 +72,7 @@ const listWises = () => {
 
 module.exports = {
     addSkill : addSkill,
+    getSkill : getSkill,
     listAllSkills : listAllSkills,
     listSkillsFromStat : listSkillsFromStat,
     listWises : listWises

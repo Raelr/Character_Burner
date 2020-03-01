@@ -69,6 +69,11 @@ yargs.command({
             demandOption: true,
             type: 'array'
         },
+        s: {
+            describe: 'The skills associated with the lifepath (just input their names)',
+            demandOption: true,
+            type: 'array'
+        },
         sp: {
             describe: 'Number of skill points.',
             demandOption: true,
@@ -79,7 +84,14 @@ yargs.command({
         }
     },
     handler(argv) {
-        lp.addLifePath(argv.n, argv.se, argv.st, argv.ti, argv.l, argv.sp, argv.tp)
+        var skills = []
+        argv.s.forEach((item) => {
+            var pathSkill = skill.getSkill(item)
+            if (pathSkill) {
+                skills.push(pathSkill)
+            }
+        })
+        lp.addLifePath(argv.n, argv.se, argv.st, argv.ti, argv.l, skills, argv.sp, argv.tp)
     }
 })
 
