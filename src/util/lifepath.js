@@ -165,15 +165,14 @@ const listAllPaths = () => {
     var paths = loadLifePaths()
 
     paths.forEach(element => {
-        console.log('\nStock: ' + element.stock);
+        console.log('Stock: ' + element.stock);
         element.settings.forEach(setting => {
-            console.log('-  Setting: ' + setting.setting);
+            console.log('   - Setting: ' + setting.setting);
             setting.lifePaths.forEach(path => {
-                console.log('   *   ' + path.name)
+                console.log('       * ' + path.name)
             });
         });
     });
-    console.log('\n')
 }
 
 // Lists all the settings registered under and stock.
@@ -185,11 +184,10 @@ const listSettingsForStock = (stockName) => {
 
     // Check if stock exists.
     if (stock) {
-        console.log('\nStock: ' + stockName + '\nRegistered Settings:')
+        console.log('Stock: ' + stockName + '\nRegistered Settings:')
         stock.settings.forEach(setting => {
             console.log('   -   ' + setting.setting)
         })
-        console.log('\n')
     } else {
         console.log('No stock with name: ' + stockName + ' exists!')
     }

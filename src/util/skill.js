@@ -45,6 +45,14 @@ const getSkill = (skillName) => {
     return loadSkills().find((skill) => skillName.toLowerCase() === skill.name.toLowerCase())
 }
 
+const listAllSkills = () => {
+    console.log("All available skills:")
+    loadSkills().forEach((skill) => {
+        console.log('   - ' + skill.name)
+    })
+}
+
 module.exports = {
-    addSkill : addSkill
+    addSkill : addSkill,
+    listAllSkills : listAllSkills
 };
