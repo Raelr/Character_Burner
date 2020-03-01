@@ -1,8 +1,6 @@
 const fs = require('fs')
 
 // TODO:
-// 3. Create command for creating skills.
-// 4. Create command for sorting skills.
 // 4. Create command for listing skills.
 // 5. Create command for returning skills.
 // 6. Integrate skills with lifepaths.
@@ -21,6 +19,7 @@ const addSkill = (name, stat, stock) => {
 
     if (!getSkill(name)) {
         skills.push(data)
+        skills.sort((a, b) => a.name.localeCompare(b.name))
         saveSkills(skills)
     } else {
         return console.log(name + ' already exists!')

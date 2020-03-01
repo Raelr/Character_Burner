@@ -3,5 +3,15 @@
     "name": "Abbey-wise",
     "stat": "perception",
     "stock": ""
+  },
+  {
+    "name": "Animal Husbandry",
+    "stat": "Will",
+    "stock": ""
+  },
+  {
+    "name": "Cooking",
+    "stat": "perception",
+    "stock": ""
   }
 ]

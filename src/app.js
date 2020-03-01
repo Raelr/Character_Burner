@@ -205,6 +205,33 @@ yargs.command({
     }
 })
 
-skill.addSkill('Abbey-wise', 'perception', '')
+// Command for adding new skills to the list of available skills.
+yargs.command({
+    command: 'as',
+    describe: 'Adds a new skill to the game',
+    builder: {
+        n: {
+            describe: 'The skill\'s name.',
+            demandOption: true,
+            type: 'string'
+        },
+        s: {
+            describe: 'Stat the skill is associated with',
+            demandOption: true,
+            type: 'string'
+        },
+        st: {
+            describe: 'The stock that can use tbis skill.',
+            type: 'string'
+        }
+    },
+    handler(argv) {
+        var stock = ''
+        if (argv.st) {
+            stock = argv.st
+        }
+        skill.addSkill(argv.n, argv.s, stock)
+    }
+})
 
 yargs.parse();
