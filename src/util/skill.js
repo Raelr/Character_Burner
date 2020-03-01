@@ -52,7 +52,16 @@ const listAllSkills = () => {
     })
 }
 
+const listSkillsFromStat = (statName) => {
+    console.log('Listing all skills of stat: ' + statName)
+    loadSkills().filter((stat) => stat.stat.toLowerCase() === statName.toLowerCase())
+    .forEach((stat) => {
+        console.log('   - ' + stat.name)
+    })
+}
+
 module.exports = {
     addSkill : addSkill,
-    listAllSkills : listAllSkills
+    listAllSkills : listAllSkills,
+    listSkillsFromStat : listSkillsFromStat
 };
