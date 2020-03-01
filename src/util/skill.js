@@ -60,8 +60,18 @@ const listSkillsFromStat = (statName) => {
     })
 }
 
+const listWises = () => {
+    const regex = /\bwise\b/
+    console.log('Listing all registered wises:')
+    loadSkills().filter((skill) => skill.name.search(regex) != -1)
+    .forEach( (skill) =>  {
+        console.log('   - ' + skill.name)
+    })
+}
+
 module.exports = {
     addSkill : addSkill,
     listAllSkills : listAllSkills,
-    listSkillsFromStat : listSkillsFromStat
+    listSkillsFromStat : listSkillsFromStat,
+    listWises : listWises
 };
