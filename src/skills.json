@@ -13,5 +13,20 @@
     "name": "Cooking",
     "stat": "perception",
     "stock": ""
+  },
+  {
+    "name": "Farming",
+    "stat": "perception",
+    "stock": ""
+  },
+  {
+    "name": "Firebuilding",
+    "stat": "perception",
+    "stock": ""
+  },
+  {
+    "name": "Mending",
+    "stat": "perception/agility",
+    "stock": ""
   }
 ]

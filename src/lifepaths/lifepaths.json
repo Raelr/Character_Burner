@@ -36,6 +36,36 @@
                 "name": "Cooking",
                 "stat": "perception",
                 "stock": ""
+              },
+              {
+                "name": "Farming",
+                "stat": "perception",
+                "stock": ""
+              },
+              {
+                "name": "Firebuilding",
+                "stat": "perception",
+                "stock": ""
+              },
+              {
+                "name": "Mending",
+                "stat": "perception/agility",
+                "stock": ""
+              },
+              {
+                "name": "Sewing",
+                "stat": "agility",
+                "stock": ""
+              },
+              {
+                "name": "Sing",
+                "stat": "will",
+                "stock": ""
+              },
+              {
+                "name": "Weaving",
+                "stat": "perception/agility",
+                "stock": ""
               }
             ],
             "skillP": 8,

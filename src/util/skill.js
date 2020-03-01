@@ -70,10 +70,30 @@ const listWises = () => {
     })
 }
 
+const removeSkill = (skillName) => {
+    skills = loadSkills()
+    skills.splice(indexOf(skills, skillName), 1)
+    saveSkills(skills)
+}
+
+const indexOf = (list, skillName) => {
+    var idx = 0
+    var wantedIdx = -1
+    list.forEach((item) => {
+        if (item.name.toLowerCase().localeCompare(skillName.toLowerCase()) == 0) {
+            wantedIdx = idx
+        } else {
+            idx+= 1
+        }
+    })
+    return wantedIdx
+}
+
 module.exports = {
     addSkill : addSkill,
     getSkill : getSkill,
     listAllSkills : listAllSkills,
     listSkillsFromStat : listSkillsFromStat,
-    listWises : listWises
+    listWises : listWises,
+    removeSkill : removeSkill
 };
