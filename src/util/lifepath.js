@@ -4,7 +4,8 @@ const fs = require('fs')
 // TODO: Allow lifepaths to be overridden.
 // TODO: Create associated skills.
 // TODO: Create associated traits.
-// TODO: Allow available lifepaths for a character to be listed.
+// TODO: Add requirements of lifepath to be processed.
+// TODO: Add more lifePaths.
 
 // Adds a new lifepath to the paths file
 const addLifePath = (name, setting, stock, time, leads, skills, traits) => {

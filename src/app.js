@@ -1,6 +1,7 @@
 const yargs = require('yargs')
 const char = require('./util/char')
 const lp = require('./util/lifepath.js')
+const skill = require('./util/skill.js')
 
 // Command for creating a new character.
 yargs.command({
@@ -203,5 +204,7 @@ yargs.command({
         }
     }
 })
+
+skill.addSkill('Abbey-wise', 'perception', '')
 
 yargs.parse();

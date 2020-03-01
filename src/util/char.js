@@ -4,6 +4,7 @@ const fs = require('fs')
 // TODO: Add traits and skills so that they can interact with lifepaths.
 // TODO: Add skills to lifepaths.
 // TODO: build command for adding new lifepaths.
+// TODO: Add Age and Sex attributes
 
 const addChar = (name, concept, stock, override) => {
 
