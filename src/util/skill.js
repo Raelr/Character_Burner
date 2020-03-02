@@ -2,8 +2,8 @@ const fs = require('fs')
 
 // TODO:
 // 1. Integrate skills with lifepaths.
-// 2. Integrate skills with characters.
-// 3. Allow characters to allocate points to skills.
+// 4. Integrate skills with characters.
+// 5. Allow characters to allocate points to skills.
 const addSkill = (name, stat, stock) => {
 
     const skills = loadSkills()

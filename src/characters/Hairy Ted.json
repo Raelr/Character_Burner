@@ -4,7 +4,7 @@
   "stock": "Human",
   "age": 16,
   "mental": 0,
-  "physical": 0,
+  "physical": 1,
   "stats": {
     "will": {
       "value": 0,
@@ -47,7 +47,8 @@
       "resources": 3,
       "skills": [],
       "skillP": 3,
-      "traitP": 2
+      "traitP": 2,
+      "stat": ""
     },
     {
       "name": "Farmer",
@@ -86,7 +87,8 @@
         }
       ],
       "skillP": 8,
-      "traitP": 1
+      "traitP": 1,
+      "stat": "1P"
     }
   ],
   "traitPoints": 3,

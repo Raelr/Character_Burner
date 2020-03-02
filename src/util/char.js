@@ -4,9 +4,7 @@ const fs = require('fs')
 // eg: (name, shade, amount...etc)
 // TODO: HOOK UP TO MONGODB SO THAT YOU CAN STORE AND QUERY
 // TODO: Add traits and skills so that they can interact with lifepaths.
-// TODO: Add skills to lifepaths.
-// TODO: build command for adding new lifepaths.
-// TODO: Add Age and Sex attributes
+// TODO: Add Sex attribute
 const addChar = (name, concept, stock, override) => {
 
     if (override || !loadChar(name)) {
@@ -120,11 +118,23 @@ const addPathToChar = (charName, lp, stock, setting) => {
 
 // Add the path to the character lifepaths.
 const addPath = (char, lp, setting, isLead = false) => {
+    // Add generak stats.
     char.lifePaths.push(lp)
     char.age += isLead ? (lp.time + 1) : lp.time
     char.traitPoints += lp.traitP
     char.res += lp.resources
 
+    // Check if the character gets a stat bonus for having this lifepath.
+    if (lp.stat != '') {
+        var value = parseInt(lp.stat)
+        if (lp.stat.includes('P/M')) {
+            console.log('You have one point that you can allocate to either your Physical or Mental stats!')
+        } else if (lp.stat.includes('P')) {
+            char.physical += value
+        } else {
+            char.mental += value
+        }
+    }
     // Check if the character already has the setting logged and whether it was his latest setting.
     if (!((char.settings.filter((currSetting) => currSetting.toLowerCase() === setting.toLowerCase()).length > 0)
     && char.settings[char.settings.length - 1].toLowerCase() === setting.toLowerCase())) {

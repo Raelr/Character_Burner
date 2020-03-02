@@ -85,6 +85,10 @@ yargs.command({
         r: {
             describe: 'The number of resources granted by the skill',
             demandOption: true
+        },
+        sta: {
+            describe: 'Stat bonuses conferred by lifepath (must be in form [Number + Stat]. I.e: 1M or 1P)',
+            type: 'string'
         }
     },
     handler(argv) {
@@ -95,7 +99,11 @@ yargs.command({
                 skills.push(pathSkill)
             }
         })
-        lp.addLifePath(argv.n, argv.se, argv.st, argv.ti, argv.l, skills, argv.sp, argv.tp, argv.r)
+        var stat = ''
+        if (argv.sta) {
+            stat = argv.sta
+        }
+        lp.addLifePath(argv.n, argv.se, argv.st, argv.ti, argv.l, skills, argv.sp, argv.tp, argv.r, stat)
     }
 })
 
@@ -250,6 +258,7 @@ yargs.command({
     }
 })
 
+// Removes a skill from the skill list.
 yargs.command({
     command: 'rs',
     describe: 'Removes a skill from the skill list',
@@ -264,5 +273,7 @@ yargs.command({
         skill.removeSkill(argv.s)
     }
 })
+
+var string = '1P'
 
 yargs.parse();
