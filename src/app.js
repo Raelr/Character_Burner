@@ -81,6 +81,10 @@ yargs.command({
         tp: {
             describe: 'Number of trait points',
             demandOption: true,
+        },
+        r: {
+            describe: 'The number of resources granted by the skill',
+            demandOption: true
         }
     },
     handler(argv) {
@@ -91,7 +95,7 @@ yargs.command({
                 skills.push(pathSkill)
             }
         })
-        lp.addLifePath(argv.n, argv.se, argv.st, argv.ti, argv.l, skills, argv.sp, argv.tp)
+        lp.addLifePath(argv.n, argv.se, argv.st, argv.ti, argv.l, skills, argv.sp, argv.tp, argv.r)
     }
 })
 
@@ -233,7 +237,7 @@ yargs.command({
             type: 'string'
         },
         st: {
-            describe: 'The stock that can use tbis skill.',
+            describe: 'The stock that can use this skill.',
             type: 'string'
         }
     },

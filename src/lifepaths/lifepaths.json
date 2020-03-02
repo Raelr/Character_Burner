@@ -14,6 +14,7 @@
               "Seafaring",
               "Religious"
             ],
+            "resources": 3,
             "skills": [],
             "skillP": 3,
             "traitP": 2
@@ -26,6 +27,7 @@
               "Soldier",
               "Villager"
             ],
+            "resources": 5,
             "skills": [
               {
                 "name": "Animal Husbandry",
@@ -49,21 +51,6 @@
               },
               {
                 "name": "Mending",
-                "stat": "perception/agility",
-                "stock": ""
-              },
-              {
-                "name": "Sewing",
-                "stat": "agility",
-                "stock": ""
-              },
-              {
-                "name": "Sing",
-                "stat": "will",
-                "stock": ""
-              },
-              {
-                "name": "Weaving",
                 "stat": "perception/agility",
                 "stock": ""
               }

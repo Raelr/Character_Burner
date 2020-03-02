@@ -1,5 +1,7 @@
 const fs = require('fs')
 
+// TODO:  Refactor skills so that they transform into a new format when added to the character.
+// eg: (name, shade, amount...etc)
 // TODO: HOOK UP TO MONGODB SO THAT YOU CAN STORE AND QUERY
 // TODO: Add traits and skills so that they can interact with lifepaths.
 // TODO: Add skills to lifepaths.
@@ -121,6 +123,7 @@ const addPath = (char, lp, setting, isLead = false) => {
     char.lifePaths.push(lp)
     char.age += isLead ? (lp.time + 1) : lp.time
     char.traitPoints += lp.traitP
+    char.res += lp.resources
 
     // Check if the character already has the setting logged and whether it was his latest setting.
     if (!((char.settings.filter((currSetting) => currSetting.toLowerCase() === setting.toLowerCase()).length > 0)
