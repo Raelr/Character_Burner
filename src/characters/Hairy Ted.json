@@ -2,6 +2,7 @@
   "name": "Hairy Ted",
   "concept": "Simple Farmer",
   "stock": "Human",
+  "sex": "Male",
   "age": 16,
   "mental": 0,
   "physical": 1,

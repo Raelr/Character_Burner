@@ -5,13 +5,14 @@ const fs = require('fs')
 // TODO: HOOK UP TO MONGODB SO THAT YOU CAN STORE AND QUERY
 // TODO: Add traits and skills so that they can interact with lifepaths.
 // TODO: Add Sex attribute
-const addChar = (name, concept, stock, override) => {
+const addChar = (name, concept, stock, sex, override) => {
 
     if (override || !loadChar(name)) {
         const char = {
             name: name,
             concept: concept,
             stock: stock,
+            sex: sex,
             age: 0,
             mental: 0,
             physical: 0,

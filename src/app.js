@@ -23,6 +23,11 @@ yargs.command({
             demandOption: true,
             type: 'string'
         },
+        sx: {
+            describe: 'Character sex [male/female]',
+            demandOption: true,
+            type: 'string'
+        },
         o: {
             describe: 'Override saved character',
             demandOption: false,
@@ -30,12 +35,15 @@ yargs.command({
         },
     },
     handler(argv) {
-        if (argv.s.toLowerCase() === 'dwarf' || argv.s.toLowerCase() === 'human'
-        || argv.s.toLowerCase() === 'orc' || argv.s.toLowerCase() === 'elf') {
+        var isValidStock = argv.s.toLowerCase() === 'dwarf' || argv.s.toLowerCase() === 'human'
+        || argv.s.toLowerCase() === 'orc' || argv.s.toLowerCase() === 'elf'
 
-            char.addChar(argv.n, argv.c, argv.s, argv.o)
+        var isValidSex = argv.sx.toLowerCase() === 'male' || argv.sx.toLowerCase() === 'female'
+
+        if (isValidStock && isValidSex) {
+            char.addChar(argv.n, argv.c, argv.s, argv.sx, argv.o)
         } else {
-            console.log("Please select a valid Stock [Human/Dwarf/Elf/Orc]");
+            console.log("Error: co figuration not valid. Choose an appropriate stock: [Human/Dwarf/Elf/Orc] or appropriate sex: [Male/Female]")
         }
     }
 })
@@ -273,7 +281,5 @@ yargs.command({
         skill.removeSkill(argv.s)
     }
 })
-
-var string = '1P'
 
 yargs.parse();
