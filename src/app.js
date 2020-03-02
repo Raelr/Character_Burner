@@ -246,4 +246,19 @@ yargs.command({
     }
 })
 
+yargs.command({
+    command: 'rs',
+    describe: 'Removes a skill from the skill list',
+    builder: {
+        s: {
+            describe: 'The name of the skill you want to remove',
+            demandOption: true,
+            type: 'string'
+        }
+    },
+    handler(argv) {
+        skill.removeSkill(argv.s)
+    }
+})
+
 yargs.parse();
