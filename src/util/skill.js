@@ -2,7 +2,6 @@ const fs = require('fs')
 
 // TODO:
 
-// 1. Add ability to remove skill
 // 2. Add requirements and filters for returning relevant skills.
 // 3. Integrate skills with lifepaths.
 // 4. Integrate skills with characters.
@@ -69,6 +68,14 @@ const listWises = () => {
     })
 }
 
+const listSkillsFromStock = (stockName) => {
+    console.log('Listing all skils restricted by stock: ' + stockName)
+    loadSkills().filter((skill) => skill.stock.toLowerCase() === stockName)
+    .forEach((skill) => {
+        console.log('   * ' + skill.name)
+    })
+}
+
 const removeSkill = (skillName) => {
     skills = loadSkills()
     skills.splice(indexOf(skills, skillName), 1)
@@ -94,5 +101,6 @@ module.exports = {
     listAllSkills : listAllSkills,
     listSkillsFromStat : listSkillsFromStat,
     listWises : listWises,
-    removeSkill : removeSkill
+    listSkillsFromStock: listSkillsFromStock,
+    removeSkill : removeSkill,
 };
