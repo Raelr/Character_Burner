@@ -261,6 +261,4 @@ yargs.command({
     }
 })
 
-skill.listSkillsFromStock('')
-
 yargs.parse();

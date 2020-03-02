@@ -1,6 +1,6 @@
 {
   "name": "Hairy Ted",
-  "concept": "Hairy Bard",
+  "concept": "Simple Farmer",
   "stock": "Human",
   "age": 16,
   "mental": 0,
@@ -39,24 +39,67 @@
       "name": "Born Peasant",
       "time": 8,
       "leads": [
-        "Servitude",
+        "Servitute",
         "Soldier",
         "Seafaring",
         "Religious"
       ],
-      "skills": 3,
-      "traits": 2
+      "skills": [],
+      "skillP": 3,
+      "traitP": 2
     },
     {
       "name": "Farmer",
       "time": 8,
       "leads": [
-        "Servitude",
+        "Servitute",
         "Soldier",
         "Villager"
       ],
-      "skills": 8,
-      "traits": 1
+      "skills": [
+        {
+          "name": "Animal Husbandry",
+          "stat": "Will",
+          "stock": ""
+        },
+        {
+          "name": "Cooking",
+          "stat": "perception",
+          "stock": ""
+        },
+        {
+          "name": "Farming",
+          "stat": "perception",
+          "stock": ""
+        },
+        {
+          "name": "Firebuilding",
+          "stat": "perception",
+          "stock": ""
+        },
+        {
+          "name": "Mending",
+          "stat": "perception/agility",
+          "stock": ""
+        },
+        {
+          "name": "Sewing",
+          "stat": "agility",
+          "stock": ""
+        },
+        {
+          "name": "Sing",
+          "stat": "will",
+          "stock": ""
+        },
+        {
+          "name": "Weaving",
+          "stat": "perception/agility",
+          "stock": ""
+        }
+      ],
+      "skillP": 8,
+      "traitP": 1
     }
   ],
   "traitPoints": 3,
