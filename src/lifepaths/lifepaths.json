@@ -18,7 +18,13 @@
             "skills": [],
             "skillP": 3,
             "traitP": 2,
-            "stat": ""
+            "stat": "",
+            "restrictions": {
+              "age": 0,
+              "setting": "",
+              "position": 0,
+              "LifePaths": []
+            }
           },
           {
             "name": "Farmer",
@@ -58,7 +64,13 @@
             ],
             "skillP": 8,
             "traitP": 1,
-            "stat": "1P"
+            "stat": "1P",
+            "restrictions": {
+              "age": 0,
+              "setting": "Villager",
+              "position": 0,
+              "LifePaths": []
+            }
           }
         ]
       }

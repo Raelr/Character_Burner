@@ -21,7 +21,13 @@ const addLifePath = (name, setting, stock, time, leads, skills, skillP, traitP, 
         skills: skills,
         skillP: skillP,
         traitP: traitP,
-        stat: stat
+        stat: stat,
+        restrictions: {
+            age: 0,
+            setting: '',
+            position: 0,
+            LifePaths: []
+        }
     }
 
     var pathStock = getStock(paths, stock)
@@ -58,7 +64,22 @@ const addLifePath = (name, setting, stock, time, leads, skills, skillP, traitP, 
     saveLifePath(paths)
 }
 
-//
+// Allows the addition of a setting to the character's restrictions.
+// Adding this adds the requirement that a character must have any lifepath in the given setting.
+const addSettingRestriction = (stockName, settingName, lpName, restrictedSetting) => {
+    var lps = loadLifePaths()
+    var lp = getLifePath(stockName, settingName, lpName)
+    if (lp && lp.restrictions.setting.toLowerCase() != restrictedSetting.toLowerCase()) {
+        lps.find((stock) => stockName.toLowerCase() === stock.stock.toLowerCase()).settings
+        .find((setting) => setting.setting.toLowerCase() === settingName.toLowerCase()).lifePaths
+        .find((lp) => lp.name.toLowerCase() === lpName.toLowerCase()).restrictions
+        .setting = restrictedSetting
+        saveLifePath(lps)
+    } else {
+        return console.log('Error. Either the setting is already required or the lifepath doesn\'t exist')
+    }
+}
+
 const getLifePath = (stock, setting, pathName) => {
 
     lifePaths = loadLifePaths()
@@ -220,5 +241,6 @@ module.exports = {
     removeStock : removeStock,
     listAllPaths : listAllPaths,
     listSettingsForStock : listSettingsForStock,
-    listPathsForSetting : listPathsForSetting
+    listPathsForSetting : listPathsForSetting,
+    addSettingRestriction : addSettingRestriction
 }

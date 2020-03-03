@@ -3,8 +3,7 @@ const fs = require('fs')
 // TODO:  Refactor skills so that they transform into a new format when added to the character.
 // eg: (name, shade, amount...etc)
 // TODO: HOOK UP TO MONGODB SO THAT YOU CAN STORE AND QUERY
-// TODO: Add traits and skills so that they can interact with lifepaths.
-// TODO: Add Sex attribute
+// TODO: Add traits so that they can interact with lifepaths.
 const addChar = (name, concept, stock, sex, override) => {
 
     if (override || !loadChar(name)) {
