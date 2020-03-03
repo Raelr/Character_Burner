@@ -282,4 +282,6 @@ yargs.command({
     }
 })
 
+lp.addPositionRestriction('Human', 'Peasant', 'Head of Household', 2)
+
 yargs.parse();

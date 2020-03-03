@@ -68,21 +68,34 @@ const addLifePath = (name, setting, stock, time, leads, skills, skillP, traitP, 
 // Adding this adds the requirement that a character must have any lifepath in the given setting.
 const addSettingRestriction = (stockName, settingName, lpName, restrictedSetting) => {
     var lps = loadLifePaths()
-    var lp = getLifePath(stockName, settingName, lpName)
+    var lp = getLifePath(stockName, settingName, lpName, lps)
     if (lp && lp.restrictions.setting.toLowerCase() != restrictedSetting.toLowerCase()) {
-        lps.find((stock) => stockName.toLowerCase() === stock.stock.toLowerCase()).settings
-        .find((setting) => setting.setting.toLowerCase() === settingName.toLowerCase()).lifePaths
-        .find((lp) => lp.name.toLowerCase() === lpName.toLowerCase()).restrictions
-        .setting = restrictedSetting
+        lp.restrictions.setting = restrictedSetting
         saveLifePath(lps)
     } else {
         return console.log('Error. Either the setting is already required or the lifepath doesn\'t exist')
     }
 }
 
-const getLifePath = (stock, setting, pathName) => {
+// Allows you to place a restrcition on where the lifepath may be placed.
+// i.e some lifepaths may not be allowed as a character's second lifepath.
+// In this case the position restriction would be set to 2 (for position 2)
+const addPositionRestriction = (stockName, settingName, lpName, restrictedPosition) => {
+    var lps = loadLifePaths()
+    var lp = getLifePath(stockName, settingName, lpName, lps)
+    if (lp) {
+        lp.restrictions.position = restrictedPosition
+        saveLifePath(lps)
+    } else {
+        return console.log('The requested path does not exist!')
+    }
+}
 
-    lifePaths = loadLifePaths()
+const getLifePath = (stock, setting, pathName, lifePaths = null) => {
+
+    if (!lifePaths) {
+        lifePaths = loadLifePaths()
+    }
 
     var searchedStock = getStock(lifePaths, stock)
     if (searchedStock) {
@@ -242,5 +255,6 @@ module.exports = {
     listAllPaths : listAllPaths,
     listSettingsForStock : listSettingsForStock,
     listPathsForSetting : listPathsForSetting,
-    addSettingRestriction : addSettingRestriction
+    addSettingRestriction : addSettingRestriction,
+    addPositionRestriction : addPositionRestriction
 }
