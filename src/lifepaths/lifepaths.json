@@ -23,7 +23,7 @@
               "age": 0,
               "setting": "",
               "position": 0,
-              "LifePaths": []
+              "lifePaths": []
             }
           },
           {
@@ -69,7 +69,7 @@
               "age": 0,
               "setting": "",
               "position": 0,
-              "LifePaths": []
+              "lifePaths": []
             }
           },
           {
@@ -80,7 +80,28 @@
               "Villager"
             ],
             "resources": 20,
-            "skills": [],
+            "skills": [
+              {
+                "name": "Carpentry",
+                "stat": "perception/agility",
+                "stock": ""
+              },
+              {
+                "name": "Hunting",
+                "stat": "perception/agility",
+                "stock": ""
+              },
+              {
+                "name": "Haggling",
+                "stat": "will",
+                "stock": ""
+              },
+              {
+                "name": "Almanac",
+                "stat": "perception",
+                "stock": ""
+              }
+            ],
             "skillP": 8,
             "traitP": 2,
             "stat": "1M",
@@ -88,7 +109,7 @@
               "age": 0,
               "setting": "",
               "position": 2,
-              "LifePaths": []
+              "lifePaths": []
             }
           }
         ]

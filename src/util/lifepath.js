@@ -26,7 +26,7 @@ const addLifePath = (name, setting, stock, time, leads, skills, skillP, traitP, 
             age: 0,
             setting: '',
             position: 0,
-            LifePaths: []
+            lifePaths: []
         }
     }
 
@@ -85,6 +85,30 @@ const addPositionRestriction = (stockName, settingName, lpName, restrictedPositi
     var lp = getLifePath(stockName, settingName, lpName, lps)
     if (lp) {
         lp.restrictions.position = restrictedPosition
+        saveLifePath(lps)
+    } else {
+        return console.log('The requested path does not exist!')
+    }
+}
+
+// Sets a requirement for a certain age threshold to be met before lifepath can be picked
+const addAgeRestriction = (stockName, settingName, lpName, requiredAge) => {
+    var lps = loadLifePaths()
+    var lp = getLifePath(stockName, settingName, lpName, lps)
+    if (lp) {
+        lp.restrictions.age = requiredAge
+        saveLifePath(lps)
+    } else {
+        return console.log('The requested path does not exist!')
+    }
+}
+
+// Sets a requirement for a set of paths that must be chosen before the lifepath can be met.
+const addPathRequirements = (stockName, settingName, lpName, requiredLps) => {
+    var lps = loadLifePaths()
+    var lp = getLifePath(stockName, settingName, lpName, lps)
+    if (lp) {
+        requiredLps.forEach((path) => lp.restrictions.lifePaths.push(path))
         saveLifePath(lps)
     } else {
         return console.log('The requested path does not exist!')
@@ -256,5 +280,7 @@ module.exports = {
     listSettingsForStock : listSettingsForStock,
     listPathsForSetting : listPathsForSetting,
     addSettingRestriction : addSettingRestriction,
-    addPositionRestriction : addPositionRestriction
+    addPositionRestriction : addPositionRestriction,
+    addAgeRestriction : addAgeRestriction,
+    addPathRequirements : addPathRequirements
 }

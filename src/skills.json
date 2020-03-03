@@ -5,8 +5,18 @@
     "stock": ""
   },
   {
+    "name": "Almanac",
+    "stat": "perception",
+    "stock": ""
+  },
+  {
     "name": "Animal Husbandry",
     "stat": "Will",
+    "stock": ""
+  },
+  {
+    "name": "Carpentry",
+    "stat": "perception/agility",
     "stock": ""
   },
   {
@@ -22,6 +32,16 @@
   {
     "name": "Firebuilding",
     "stat": "perception",
+    "stock": ""
+  },
+  {
+    "name": "Haggling",
+    "stat": "will",
+    "stock": ""
+  },
+  {
+    "name": "Hunting",
+    "stat": "perception/agility",
     "stock": ""
   },
   {
