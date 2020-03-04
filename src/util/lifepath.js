@@ -64,54 +64,34 @@ const addLifePath = (name, setting, stock, time, leads, skills, skillP, traitP, 
     saveLifePath(paths)
 }
 
-// Allows the addition of a setting to the character's restrictions.
-// Adding this adds the requirement that a character must have any lifepath in the given setting.
-const addSettingRestriction = (stockName, settingName, lpName, restrictedSetting) => {
+const addRestriction = (stockName, settingName, lpName, restrictedSetting, restrictedPosition, requiredAge, requiredLps) => {
     var lps = loadLifePaths()
     var lp = getLifePath(stockName, settingName, lpName, lps)
-    if (lp && lp.restrictions.setting.toLowerCase() != restrictedSetting.toLowerCase()) {
-        lp.restrictions.setting = restrictedSetting
-        saveLifePath(lps)
-    } else {
-        return console.log('Error. Either the setting is already required or the lifepath doesn\'t exist')
-    }
-}
-
-// Allows you to place a restrcition on where the lifepath may be placed.
-// i.e some lifepaths may not be allowed as a character's second lifepath.
-// In this case the position restriction would be set to 2 (for position 2)
-const addPositionRestriction = (stockName, settingName, lpName, restrictedPosition) => {
-    var lps = loadLifePaths()
-    var lp = getLifePath(stockName, settingName, lpName, lps)
+    
     if (lp) {
-        lp.restrictions.position = restrictedPosition
+        // Enabling this restriction will add the requirement for the character to have at least one lifepath from 
+        // the specified setting.  
+        if (restrictedSetting && lp.restrictions.setting.toLowerCase() != restrictedSetting.toLowerCase()) {
+            lp.restrictions.setting = restrictedSetting
+        }
+        // This ensures that the lifepath can only be chosen after if a number of lifepaths are chosen beforehand. 
+        // i.e: a position of 2 ensures that the lifepath CANNOT be chosen unless the character has taken two lifepaths already.  
+        if (restrictedPosition) {
+            lp.restrictions.position = restrictedPosition
+        }
+        // Ensures that the character can only choose a lifepath once they've reached a specific age. 
+        if (requiredAge) {
+            lp.restrictions.age = requiredAge
+        }
+        // Adds a requirement that the character MUST take at least one of the lifepaths in the inserted list.  
+        if (requiredLps) {
+            requiredLps.forEach((path) => {
+                if (lp.restrictions.lifePaths.indexOf(path) != 0) {
+                    lp.restrictions.lifePaths.push(path)
+                }
+            })
+        }
         saveLifePath(lps)
-    } else {
-        return console.log('The requested path does not exist!')
-    }
-}
-
-// Sets a requirement for a certain age threshold to be met before lifepath can be picked
-const addAgeRestriction = (stockName, settingName, lpName, requiredAge) => {
-    var lps = loadLifePaths()
-    var lp = getLifePath(stockName, settingName, lpName, lps)
-    if (lp) {
-        lp.restrictions.age = requiredAge
-        saveLifePath(lps)
-    } else {
-        return console.log('The requested path does not exist!')
-    }
-}
-
-// Sets a requirement for a set of paths that must be chosen before the lifepath can be met.
-const addPathRequirements = (stockName, settingName, lpName, requiredLps) => {
-    var lps = loadLifePaths()
-    var lp = getLifePath(stockName, settingName, lpName, lps)
-    if (lp) {
-        requiredLps.forEach((path) => lp.restrictions.lifePaths.push(path))
-        saveLifePath(lps)
-    } else {
-        return console.log('The requested path does not exist!')
     }
 }
 
@@ -279,8 +259,5 @@ module.exports = {
     listAllPaths : listAllPaths,
     listSettingsForStock : listSettingsForStock,
     listPathsForSetting : listPathsForSetting,
-    addSettingRestriction : addSettingRestriction,
-    addPositionRestriction : addPositionRestriction,
-    addAgeRestriction : addAgeRestriction,
-    addPathRequirements : addPathRequirements
+    addRestriction : addRestriction
 }
