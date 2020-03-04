@@ -282,4 +282,43 @@ yargs.command({
     }
 })
 
+yargs.command({
+    command: 'ar',
+    describe: 'Adds a restriction to the specified lifepath',
+    builder: {
+        st: {
+            describe: 'The name of the stock the lifepath belongs to',
+            demandOption: true,
+            type: 'string'
+        },
+        se: {
+            describe: 'The setting the lifepath belongs to',
+            demandOption: true,
+            type: 'string'
+        },
+        lp: {
+            describe: 'The lifepath name',
+            demandOption: true,
+            type: 'string'
+        }, 
+        rs: {
+            describe: 'Specify a setting the character must have been in to be able to use the lifepath.',
+            type: 'string'
+        },
+        rp: {
+            describe: 'Specify an order that the lifepath must be in to be used. \nI.e: setting the position to 2 will mean that the lifepath cannot be chosen unless two other lifepaths have been chosen first.',
+        },
+        ra: {
+            describe: 'The age the character must be to take the lifepath',
+        },
+        rlp: {
+            describe: 'A list of lifepaths that should be met to be eligible for this lifepath.\n The character must have at least ONE of the specified lifepaths for it to work.',
+            type: 'array'
+        }
+    },
+    handler(argv) {
+        lp.addRestriction(argv.st, argv.se, argv.lp, argv.rs, argv.rp, argv.ra, argv.rlp)
+    }
+})
+
 yargs.parse();
