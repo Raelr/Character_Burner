@@ -165,9 +165,14 @@ var getCharStock = (charName) => {
     return loadChar(charName).stock
 }
 
+var getChar(charName) {
+    return loadChar(charName)
+}
+
 module.exports = {
     addChar: addChar,
     addPathToChar: addPathToChar,
     getLeadList: getLeadList,
-    getCharStock: getCharStock
+    getCharStock: getCharStock,
+    getChar: getChar
 };

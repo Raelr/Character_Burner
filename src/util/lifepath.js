@@ -64,26 +64,27 @@ const addLifePath = (name, setting, stock, time, leads, skills, skillP, traitP, 
     saveLifePath(paths)
 }
 
+// Adds a condition which must be met for the lifepath to be pickable for the player.
 const addRestriction = (stockName, settingName, lpName, restrictedSetting, restrictedPosition, requiredAge, requiredLps) => {
     var lps = loadLifePaths()
     var lp = getLifePath(stockName, settingName, lpName, lps)
-    
+
     if (lp) {
-        // Enabling this restriction will add the requirement for the character to have at least one lifepath from 
-        // the specified setting.  
+        // Enabling this restriction will add the requirement for the character to have at least one lifepath from
+        // the specified setting.
         if (restrictedSetting && lp.restrictions.setting.toLowerCase() != restrictedSetting.toLowerCase()) {
             lp.restrictions.setting = restrictedSetting
         }
-        // This ensures that the lifepath can only be chosen after if a number of lifepaths are chosen beforehand. 
-        // i.e: a position of 2 ensures that the lifepath CANNOT be chosen unless the character has taken two lifepaths already.  
+        // This ensures that the lifepath can only be chosen after if a number of lifepaths are chosen beforehand.
+        // i.e: a position of 2 ensures that the lifepath CANNOT be chosen unless the character has taken two lifepaths already.
         if (restrictedPosition) {
             lp.restrictions.position = restrictedPosition
         }
-        // Ensures that the character can only choose a lifepath once they've reached a specific age. 
+        // Ensures that the character can only choose a lifepath once they've reached a specific age.
         if (requiredAge) {
             lp.restrictions.age = requiredAge
         }
-        // Adds a requirement that the character MUST take at least one of the lifepaths in the inserted list.  
+        // Adds a requirement that the character MUST take at least one of the lifepaths in the inserted list.
         if (requiredLps) {
             requiredLps.forEach((path) => {
                 if (lp.restrictions.lifePaths.indexOf(path) != 0) {
@@ -247,6 +248,26 @@ const listPathsForSetting = (stockName, settingName) => {
         })
     } else {
         console.log('No setting with name: ' + settingName + ' exists!')
+    }
+}
+
+const isValidAge = (charAge, lifePathAge) => {
+    return charAge >= lifePathAge
+}
+
+const isValidSetting = (charSettings, lifePathSetting) => {
+    if (lifePathSetting != '') {
+        return false
+    }
+    return charSettings.find((settingName) => settingName.toLowerCase() === lifePathSetting.toLowerCase())
+}
+
+const isValid = (char, lifePath) => {
+
+    var valid = false
+
+    if (isValidAge(char.age, lifePath.requirements.age) || isValidSetting(char.settings, lifePath.requirements.setting)) {
+
     }
 }
 

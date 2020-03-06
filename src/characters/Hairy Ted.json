@@ -3,8 +3,8 @@
   "concept": "Simple Farmer",
   "stock": "Human",
   "sex": "Male",
-  "age": 16,
-  "mental": 0,
+  "age": 31,
+  "mental": 1,
   "physical": 1,
   "stats": {
     "will": {
@@ -49,7 +49,13 @@
       "skills": [],
       "skillP": 3,
       "traitP": 2,
-      "stat": ""
+      "stat": "",
+      "restrictions": {
+        "age": 0,
+        "setting": "",
+        "position": 0,
+        "lifePaths": []
+      }
     },
     {
       "name": "Farmer",
@@ -89,11 +95,57 @@
       ],
       "skillP": 8,
       "traitP": 1,
-      "stat": "1P"
+      "stat": "1P",
+      "restrictions": {
+        "age": 0,
+        "setting": "",
+        "position": 0,
+        "lifePaths": []
+      }
+    },
+    {
+      "name": "Head of Household",
+      "time": 15,
+      "leads": [
+        "Soldier",
+        "Villager"
+      ],
+      "resources": 20,
+      "skills": [
+        {
+          "name": "Carpentry",
+          "stat": "perception/agility",
+          "stock": ""
+        },
+        {
+          "name": "Hunting",
+          "stat": "perception/agility",
+          "stock": ""
+        },
+        {
+          "name": "Haggling",
+          "stat": "will",
+          "stock": ""
+        },
+        {
+          "name": "Almanac",
+          "stat": "perception",
+          "stock": ""
+        }
+      ],
+      "skillP": 8,
+      "traitP": 2,
+      "stat": "1M",
+      "restrictions": {
+        "age": 0,
+        "setting": "",
+        "position": 2,
+        "lifePaths": []
+      }
     }
   ],
-  "traitPoints": 3,
+  "traitPoints": 5,
   "general": 3,
-  "specialised": 8,
-  "res": 8
+  "specialised": 16,
+  "res": 28
 }
