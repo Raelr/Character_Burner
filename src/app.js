@@ -221,9 +221,7 @@ yargs.command({
         if (argv.c) {
             var leads = char.getLeadList(argv.c)
             console.log('Available Lifepaths for character: ' + argv.c)
-            leads.forEach(setting => {
-                lp.listPathsForSetting(char.getCharStock(argv.c), setting)
-            })
+            lp.listPathsForChar(char.getChar(argv.c), leads)
         // List all lifepaths in a specified setting
         } else if (argv.st && argv.se) {
             lp.listPathsForSetting(argv.st, argv.se)
@@ -320,10 +318,5 @@ yargs.command({
         lp.addRestriction(argv.st, argv.se, argv.lp, argv.rs, argv.rp, argv.ra, argv.rlp)
     }
 })
-
-var character = char.getChar('Hairy Ted')
-var lifePath = lp.getLifePath('Human', 'Peasant', 'Head of Household')
-
- console.log(lp.isValid(character, lifePath))
 
 yargs.parse();

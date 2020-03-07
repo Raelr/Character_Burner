@@ -251,8 +251,19 @@ const listPathsForSetting = (stockName, settingName) => {
     }
 }
 
-const listPathsforChar = (char) => {
-
+const listPathsForChar = (char, charLeads) => {
+    var lifePaths = loadLifePaths()
+    charLeads.forEach((settingName) => {
+        setting = getSetting(getStock(lifePaths, char.stock), settingName)
+        if (setting) {
+            console.log('   * Lifepaths available from setting: ' + settingName)
+            setting.lifePaths.forEach((path) => {
+                if (isValid(char, path)) {
+                    console.log('       - ' + path.name)
+                }
+            })
+        }
+    })
 }
 
 const isValidAge = (charAge, lifePathAge) => {
@@ -267,7 +278,7 @@ const isValidSetting = (charSettings, lifePathSetting) => {
 }
 
 const isValidPosition = (charPathLength, requiredPosition) => {
-    return charPathLength > requiredPosition
+    return charPathLength >= requiredPosition
 }
 
 const hasValidLifePaths = (requiredLifePaths, characterLifePaths) => {
@@ -306,5 +317,6 @@ module.exports = {
     listSettingsForStock : listSettingsForStock,
     listPathsForSetting : listPathsForSetting,
     addRestriction : addRestriction,
-    isValid: isValid
+    isValid: isValid,
+    listPathsForChar: listPathsForChar
 }
