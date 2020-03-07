@@ -165,7 +165,7 @@ var getCharStock = (charName) => {
     return loadChar(charName).stock
 }
 
-var getChar(charName) {
+var getChar = (charName) => {
     return loadChar(charName)
 }
 

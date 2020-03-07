@@ -300,7 +300,7 @@ yargs.command({
             describe: 'The lifepath name',
             demandOption: true,
             type: 'string'
-        }, 
+        },
         rs: {
             describe: 'Specify a setting the character must have been in to be able to use the lifepath.',
             type: 'string'
@@ -320,5 +320,10 @@ yargs.command({
         lp.addRestriction(argv.st, argv.se, argv.lp, argv.rs, argv.rp, argv.ra, argv.rlp)
     }
 })
+
+var character = char.getChar('Hairy Ted')
+var lifePath = lp.getLifePath('Human', 'Peasant', 'Head of Household')
+
+ console.log(lp.isValid(character, lifePath))
 
 yargs.parse();

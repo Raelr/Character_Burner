@@ -251,24 +251,49 @@ const listPathsForSetting = (stockName, settingName) => {
     }
 }
 
+const listPathsforChar = (char) => {
+
+}
+
 const isValidAge = (charAge, lifePathAge) => {
     return charAge >= lifePathAge
 }
 
 const isValidSetting = (charSettings, lifePathSetting) => {
-    if (lifePathSetting != '') {
-        return false
+    if (lifePathSetting === '') {
+        return true
     }
     return charSettings.find((settingName) => settingName.toLowerCase() === lifePathSetting.toLowerCase())
+}
+
+const isValidPosition = (charPathLength, requiredPosition) => {
+    return charPathLength > requiredPosition
+}
+
+const hasValidLifePaths = (requiredLifePaths, characterLifePaths) => {
+    var hasPath = false
+    if (requiredLifePaths.length > 0) {
+        requiredLifePaths.forEach((requiredLp, i) => {
+            characterLifePaths.forEach((charLp, i) => {
+                if (requiredLp.toLowerCase() === charLp.name.toLowerCase()) {
+                    hasPath = true
+                }
+            });
+        });
+    } else {
+        hasPath = true
+    }
+    return hasPath
 }
 
 const isValid = (char, lifePath) => {
 
     var valid = false
 
-    if (isValidAge(char.age, lifePath.requirements.age) || isValidSetting(char.settings, lifePath.requirements.setting)) {
-
-    }
+    return isValidAge(char.age, lifePath.restrictions.age)
+    && isValidSetting(char.settings, lifePath.restrictions.setting)
+    && isValidPosition(char.lifePaths.length, lifePath.restrictions.position)
+    && hasValidLifePaths(lifePath.restrictions.lifePaths, char.lifePaths)
 }
 
 module.exports = {
@@ -280,5 +305,6 @@ module.exports = {
     listAllPaths : listAllPaths,
     listSettingsForStock : listSettingsForStock,
     listPathsForSetting : listPathsForSetting,
-    addRestriction : addRestriction
+    addRestriction : addRestriction,
+    isValid: isValid
 }
