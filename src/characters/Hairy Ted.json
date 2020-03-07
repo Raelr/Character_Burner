@@ -32,6 +32,20 @@
       "shade": 0
     }
   },
+  "skills": [
+    {
+      "name": "Animal Husbandry",
+      "points": 0,
+      "shade": 0,
+      "stat": "Will"
+    },
+    {
+      "name": "Carpentry",
+      "points": 0,
+      "shade": 0,
+      "stat": "perception/agility"
+    }
+  ],
   "settings": [
     "Peasant"
   ],
@@ -146,6 +160,6 @@
   ],
   "traitPoints": 5,
   "general": 3,
-  "specialised": 16,
+  "specialised": 14,
   "res": 28
 }
