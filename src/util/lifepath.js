@@ -4,7 +4,6 @@ const fs = require('fs')
 // TODO: Allow lifepaths to be overridden.
 // TODO: Create associated skills.
 // TODO: Create associated traits.
-// TODO: Add requirements of lifepath to be processed.
 // TODO: Add more lifePaths.
 
 // Adds a new lifepath to the paths file
@@ -298,9 +297,6 @@ const hasValidLifePaths = (requiredLifePaths, characterLifePaths) => {
 }
 
 const isValid = (char, lifePath) => {
-
-    var valid = false
-
     return isValidAge(char.age, lifePath.restrictions.age)
     && isValidSetting(char.settings, lifePath.restrictions.setting)
     && isValidPosition(char.lifePaths.length, lifePath.restrictions.position)

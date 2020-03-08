@@ -41,6 +41,7 @@ const addChar = (name, concept, stock, sex, override) => {
                     shade: 0
                 },
             },
+            skills: [],
             settings: [],
             lifePaths: [],
             traitPoints: 0,
@@ -135,6 +136,12 @@ const addPath = (char, lp, setting, isLead = false) => {
             char.mental += value
         }
     }
+
+    // Add the skills to the character (first one of every lifepath)
+    if (lp.skills.length > 0) {
+        addSkill(char, lp.skills[0])
+    }
+
     // Check if the character already has the setting logged and whether it was his latest setting.
     if (!((char.settings.filter((currSetting) => currSetting.toLowerCase() === setting.toLowerCase()).length > 0)
     && char.settings[char.settings.length - 1].toLowerCase() === setting.toLowerCase())) {
@@ -146,8 +153,29 @@ const addPath = (char, lp, setting, isLead = false) => {
     console.log('You now have ' + char.traitPoints + ' trait points to spend.')
 }
 
+const addSkill = (char, skill, general = false) => {
+    var charSkill = {
+        name: skill.name,
+        points : 0,
+        shade: 0,
+        stat: skill.stat
+    }
+
+    if (char.skills.find((s) => s.name.toLowerCase() === charSkill.name.toLowerCase())) {
+        return console.log('Character already has the skill: ' + s.name)
+    } else {
+        char.skills.push(charSkill)
+        if (general) {
+            char.general -= 1
+        } else {
+            char.specialised -= 1
+        }
+    }
+    console.log('Added skill: ' + skill.name + ' to character: ' + char.name)
+}
+
 // Returns the list of lifepaths that the character can lead into (based on their most recent lifepath)
-var getLeadList = (charName) => {
+const getLeadList = (charName) => {
 
     var character = loadChar(charName)
 
@@ -161,11 +189,11 @@ var getLeadList = (charName) => {
 }
 
 // Returns the character's stock.
-var getCharStock = (charName) => {
+const getCharStock = (charName) => {
     return loadChar(charName).stock
 }
 
-var getChar = (charName) => {
+const getChar = (charName) => {
     return loadChar(charName)
 }
 
