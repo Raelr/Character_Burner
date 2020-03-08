@@ -1,7 +1,9 @@
 const fs = require('fs')
 
-// TODO:  Refactor skills so that they transform into a new format when added to the character.
-// eg: (name, shade, amount...etc)
+// TODO: Add the age-based stat allocation.
+// TODO: Add point costs for skills.
+// TODO: Add ability to 'finalise' character lifepaths.
+// TODO: Add ability to purchase skills.
 // TODO: HOOK UP TO MONGODB SO THAT YOU CAN STORE AND QUERY
 // TODO: Add traits so that they can interact with lifepaths.
 const addChar = (name, concept, stock, sex, override) => {
@@ -73,9 +75,7 @@ const saveChar = (char) => {
 }
 
 // Adds a specified lifepath to the character's list.
-const addPathToChar = (charName, lp, stock, setting) => {
-    // Try and find our character
-    var character = loadChar(charName)
+const addPathToChar = (character, lp, stock, setting) => {
     // Make sure character actually was returned
     if (character) {
         // Make sure character and lifepath stocks match.
@@ -89,7 +89,7 @@ const addPathToChar = (charName, lp, stock, setting) => {
                 } else {
                     character.general = lp.skillP
                     addPath(character, lp, setting)
-                    return console.log(charName + ' was born into the ' + setting + ' setting!')
+                    return console.log(character.name + ' was born into the ' + setting + ' setting!')
                 }
             // If the user tries to enter a lifepath that isn't a born lifepath as their first lifepath.
             } else if (character.lifePaths.length === 0 && !lp.name.toLowerCase().includes('born')) {
@@ -103,7 +103,7 @@ const addPathToChar = (charName, lp, stock, setting) => {
                 if ((character.settings[character.settings.length - 1]
                     .toLowerCase() === setting.toLowerCase()) || isLead) {
                         character.specialised += lp.skillP
-                        console.log(charName + ' became a ' + lp.name + ' at age: ' + character.age)
+                        console.log(character.name + ' became a ' + lp.name + ' at age: ' + character.age)
                         addPath(character, lp, setting, isLead)
                 } else {
                     return console.log('The lifepath chosen cannot be attached to this character! It either does not match their setting or is not a lead!')
@@ -138,8 +138,15 @@ const addPath = (char, lp, setting, isLead = false) => {
     }
 
     // Add the skills to the character (first one of every lifepath)
-    if (lp.skills.length > 0) {
-        addSkill(char, lp.skills[0])
+    var skillIdx = 0
+
+    while (skillIdx < lp.skills.length) {
+        if (hasSkill(char, lp.skills[skillIdx].name)) {
+            skillIdx++
+        } else {
+            addSkill(char, lp.skills[skillIdx])
+            break
+        }
     }
 
     // Check if the character already has the setting logged and whether it was his latest setting.
@@ -172,6 +179,10 @@ const addSkill = (char, skill, general = false) => {
         }
     }
     console.log('Added skill: ' + skill.name + ' to character: ' + char.name)
+}
+
+const hasSkill = (char, skillName) => {
+    return char.skills.find((s) => s.name.toLowerCase() === skillName.toLowerCase())
 }
 
 // Returns the list of lifepaths that the character can lead into (based on their most recent lifepath)

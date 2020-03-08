@@ -185,9 +185,12 @@ yargs.command({
     },
     handler(argv) {
         var path = lp.getLifePath(argv.st, argv.s, argv.lp)
+        var character = char.getChar(argv.c)
 
-        if (path) {
-            char.addPathToChar(argv.c, path, argv.st, argv.s)
+        if (path && lp.isValid(character, path)) {
+            char.addPathToChar(character, path, argv.st, argv.s)
+        } else {
+            console.log('Lifepath is not valid!')
         }
     }
 })
@@ -220,8 +223,12 @@ yargs.command({
         // Lists ALL available lifepaths based on the character's latest path.
         if (argv.c) {
             var leads = char.getLeadList(argv.c)
-            console.log('Available Lifepaths for character: ' + argv.c)
-            lp.listPathsForChar(char.getChar(argv.c), leads)
+            if (leads) {
+                console.log('Available Lifepaths for character: ' + argv.c)
+                lp.listPathsForChar(char.getChar(argv.c), leads)
+            } else {
+                lp.listAllPaths()
+            }
         // List all lifepaths in a specified setting
         } else if (argv.st && argv.se) {
             lp.listPathsForSetting(argv.st, argv.se)
